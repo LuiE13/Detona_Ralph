@@ -53,11 +53,19 @@ function addListenerHitBox(){
                 state.values.hitPosition = null
                 playSound('hit')
             }else{
-                state.values.lifePoints--
-                state.view.lp.textContent = `x${state.values.lifePoints}`
-                if (state.values.lifePoints<=0) {
-                    gameOver("Você perdeu todas as vidas")
+                if (state.values.hitPosition ==null) {
+                    
+                }else{
+                    state.values.lifePoints-=1
+                    state.view.lp.textContent = `x${state.values.lifePoints}`
+                    if (state.values.lifePoints<=0) {
+                        gameOver("Você perdeu todas as vidas")
+                        state.values.hitPosition = null
+                    }
                 }
+
+                
+                
             }
         })
     })
@@ -80,10 +88,9 @@ function reset() {
         state.values.lifePoints = state.values.lifeini
         state.values.scorei = state.values.scoreini
         state.values.timeatu = state.values.timeini
-        state.view.lp.textContent =`x${state.values.lifeini}`
-        state.view.score.textContent = state.values.scoreini
-        state.view.time.textContent = state.values.timeini
-        init()
+        state.view.lp.textContent =`x${state.values.lifePoints}`
+        state.view.score.textContent = state.values.scorei
+        state.view.time.textContent = state.values.timeatu
     })
 }
 
